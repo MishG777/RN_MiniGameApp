@@ -2,15 +2,11 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 
 function PrimaryButton({ children }) {
   return (
-    <View style={styles.buttonOuterContainer}>
-      <Pressable
-        style={({ pressed }) =>
-          pressed ? [styles.buttonInnerContainer, styles.pressed] : ""
-        }
-      >
+    <Pressable style={({ pressed }) => (pressed ? styles.pressed : "")}>
+      <View style={styles.buttonOuterContainer}>
         <Text style={styles.buttonText}>{children}</Text>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }
 
@@ -27,15 +23,11 @@ const styles = StyleSheet.create({
     borderColor: "#cf8471",
   },
 
-  buttonInnerContainer: {
-    backgroundColor: "#cf8471",
-    borderRadius: 20,
-  },
   buttonText: {
     color: "white",
     textAlign: "center",
   },
   pressed: {
-    opacity: 0.75,
+    opacity: 0.7,
   },
 });
