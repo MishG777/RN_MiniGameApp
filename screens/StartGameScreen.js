@@ -1,7 +1,7 @@
 //starting page where we pick the number that should be guessed
 import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
 
 const StartGameScreen = ({ onChosenNumber }) => {
