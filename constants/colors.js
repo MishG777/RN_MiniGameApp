@@ -4,6 +4,7 @@ const Colors = {
   mainRed900: "#b9023d",
 
   mainYellow400: "#ddb52f",
+  yellow600: "#c3a02e",
 };
 
 export default Colors;
