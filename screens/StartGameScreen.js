@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    margin: 7,
   },
   btnContainer: {
     flex: 1,
