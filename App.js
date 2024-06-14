@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
-import StartGameScreen from "./screens/StartGameScreen";
 import { LinearGradient } from "expo-linear-gradient";
-import GameScreen from "./screens/GameScreen";
 import AppLoading from "expo-app-loading";
-
 import Colors from "./constants/colors";
+
+import GameScreen from "./screens/GameScreen";
+import StartGameScreen from "./screens/StartGameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 
 import { useFonts } from "expo-font";
@@ -13,6 +13,7 @@ import { useFonts } from "expo-font";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [Gameover, setGameover] = useState(false);
+  const [roundsToGuessNum, setRoundsToGuessNum] = useState(0);
 
   const [fontsLoaded] = useFonts({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -34,12 +35,21 @@ export default function App() {
 
   if (userNumber) {
     screen = (
-      <GameScreen userNumber={userNumber} gameOverHandler={gameOverHandler} />
+      <GameScreen
+        userNumber={userNumber}
+        gameOverHandler={gameOverHandler}
+        setRoundsToGuessNum={setRoundsToGuessNum}
+      />
     );
   }
 
   if (Gameover) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        numberToGuess={userNumber}
+        roundsToGuessNum={roundsToGuessNum}
+      />
+    );
   }
 
   return (

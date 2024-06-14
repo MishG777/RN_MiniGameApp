@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
   instructionText: {
     color: Colors.mainYellow400,
     fontSize: 20,
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    fontFamily: "open-sans-bold",
     opacity: 0.7,
   },
 });

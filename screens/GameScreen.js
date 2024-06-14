@@ -12,6 +12,7 @@ import Card from "../components/ui/Card";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
+  console.log("rnd is:", rndNum);
 
   if (rndNum === exclude) {
     return generateRandomBetween(min, max, exclude);
@@ -23,7 +24,7 @@ function generateRandomBetween(min, max, exclude) {
 let minNum = 1;
 let maxMum = 100;
 
-const GameScreen = ({ userNumber, gameOverHandler }) => {
+const GameScreen = ({ userNumber, gameOverHandler, setRoundsToGuessNum }) => {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
@@ -52,6 +53,7 @@ const GameScreen = ({ userNumber, gameOverHandler }) => {
     } else {
       minNum = currentGuess + 1;
     }
+    setRoundsToGuessNum((prev) => prev + 1);
     console.log(minNum, maxMum);
     const newRandNUmber = generateRandomBetween(minNum, maxMum, currentGuess);
     setCurrentGuess(newRandNUmber);

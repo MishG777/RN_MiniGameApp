@@ -9,6 +9,7 @@ export default Card;
 
 const styles = StyleSheet.create({
   inputContainer: {
+    fontFamily: "open-sans",
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
