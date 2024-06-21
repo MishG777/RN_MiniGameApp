@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 import Colors from "./constants/colors";
 
 import GameScreen from "./screens/GameScreen";
@@ -9,6 +9,8 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 
 import { useFonts } from "expo-font";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
@@ -20,8 +22,14 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null;
   }
 
   function pickedNumberHandler(pickedNumber) {
@@ -29,6 +37,12 @@ export default function App() {
   }
   const gameOverHandler = () => {
     setGameover(true);
+  };
+
+  const startNewGameHandler = () => {
+    setUserNumber(null);
+    setRoundsToGuessNum(0);
+    setGameover(false);
   };
 
   let screen = <StartGameScreen onChosenNumber={pickedNumberHandler} />;
@@ -48,6 +62,7 @@ export default function App() {
       <GameOverScreen
         numberToGuess={userNumber}
         roundsToGuessNum={roundsToGuessNum}
+        startNewGame={startNewGameHandler}
       />
     );
   }
@@ -63,7 +78,9 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        <SafeAreaView style={styles.rootScreen} onLayout={onLayoutRootView}>
+          {screen}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );

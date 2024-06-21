@@ -34,6 +34,11 @@ const GameScreen = ({ userNumber, gameOverHandler, setRoundsToGuessNum }) => {
     }
   }, [currentGuess, userNumber, gameOverHandler]);
 
+  useEffect(() => {
+    minNum = 1;
+    maxMum = 100;
+  }, []);
+
   function nextGuessHandler(direction) {
     // "direction" argument --> a string - 'lower' or 'greater'\
 

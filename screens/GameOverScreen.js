@@ -4,7 +4,7 @@ import { View, Image, StyleSheet, Text, Button } from "react-native";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
-const GameOverScreen = ({ numberToGuess, roundsToGuessNum }) => {
+const GameOverScreen = ({ numberToGuess, roundsToGuessNum, startNewGame }) => {
   return (
     <View style={styles.rootContainer}>
       <Title>Game is Over!</Title>
@@ -21,7 +21,9 @@ const GameOverScreen = ({ numberToGuess, roundsToGuessNum }) => {
         <Text style={styles.highlight}> {numberToGuess}</Text>.
       </Text>
 
-      <PrimaryButton style={styles.restartBtn}>Restart the Game!</PrimaryButton>
+      <PrimaryButton style={styles.restartBtn} onPress={startNewGame}>
+        Restart the Game!
+      </PrimaryButton>
     </View>
   );
 };
@@ -59,5 +61,6 @@ const styles = StyleSheet.create({
   restartBtn: {
     marginTop: 40,
     borderColor: "white",
+    padding: 50,
   },
 });
