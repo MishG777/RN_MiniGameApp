@@ -1,6 +1,6 @@
 //will be shown once the game is over
 
-import { View, Image, StyleSheet, Text, Button } from "react-native";
+import { View, Image, StyleSheet, Text, Dimensions } from "react-native";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
@@ -30,6 +30,8 @@ const GameOverScreen = ({ numberToGuess, roundsToGuessNum, startNewGame }) => {
 
 export default GameOverScreen;
 
+const deviceWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   rootContainer: {
     padding: 52,
@@ -37,17 +39,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    borderRadius: 150,
+    borderRadius: deviceWidth < 380 ? 90 : 150,
     borderColor: "white",
     borderWidth: 5,
-    width: 300,
-    height: 300,
+    width: deviceWidth < 380 ? 180 : 300,
+    height: deviceWidth < 380 ? 180 : 300,
     margin: 20,
     overflow: "hidden",
   },
   image: {
-    width: 300,
-    height: 300,
+    width: "100%",
+    height: "100%",
   },
   mainText: {
     fontFamily: "open-sans",
